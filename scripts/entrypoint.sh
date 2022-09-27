@@ -5,6 +5,7 @@ export SETTINGS_FILE="${GITHUB_WORKSPACE}/$1/settings.py"
 export SHELL_FILE_NAME="set_env.sh"
 export ENV_FILE_NAME=$4
 export DATABASE_URL=postgresql://$DB_USER:$DB_PASSWORD@$DB_HOST:$DB_PORT/$DB_NAME
+export MANAGEPY_DIR="${GITHUB_WORKSPACE}/$5"
 
 service postgresql start
 
@@ -21,14 +22,14 @@ fi
 
 pip install -r $3
 echo "Migrating DB"
-python manage.py migrate
+python ${MANAGEPY_DIR}/manage.py migrate
 
 echo "Running your tests"
 
 # TODO: Find a better alternative
 if [ "${2,,}" == "true" ]; then
     echo "Enabled Parallel Testing"
-    python manage.py test --parallel
+    python ${MANAGEPY_DIR}/manage.py test api --parallel
 else 
-    python manage.py test
+    python ${MANAGEPY_DIR}/manage.py test api
 fi
