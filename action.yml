@@ -19,6 +19,10 @@ inputs:
     description: "The path of an env file, if you require environment variables"
     default: ""
     required: false
+  managepy-dir:
+    description: "The path of the directory containing the manage.py file(Without `./`)"
+    default: ""
+    required: false    
 runs-on: ubuntu-latest
 runs:
   using: 'docker'
@@ -28,3 +32,4 @@ runs:
     - ${{ inputs.parallel-tests }}
     - ${{ inputs.requirements-file }}
     - ${{ inputs.env-file }}
+    - ${{ inputs.managepy-dir }}
