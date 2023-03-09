@@ -20,6 +20,7 @@ if [[ ! -z $ENV_FILE_NAME ]]; then
     . ./$SHELL_FILE_NAME
 fi
 
+pip install --upgrade pip
 pip install -r $3
 pip install coverage
 echo "Migrating DB"
