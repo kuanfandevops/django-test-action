@@ -30,6 +30,7 @@ USER root
 COPY ./scripts /
 
 #Install psycopg2
+RUN pip install --upgrade pip==24.0
 RUN pip install --upgrade pip psycopg2-binary
 
 RUN chmod +x /entrypoint.sh
